@@ -51,7 +51,8 @@ class SimpleOsd(Gtk.Window):
 
         lbl = Gtk.Label()
         lbl.set_text(self.text)        
-        
+        lbl.set_justify(Gtk.Justification.CENTER)
+
         fd = Pango.FontDescription("Serif 30")
         lbl.modify_font(fd)                
         lbl.modify_fg(Gtk.StateFlags.NORMAL,Gdk.color_parse("white"))        
