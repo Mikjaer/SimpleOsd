@@ -5,7 +5,7 @@ Copyright (c) Me
 # apt-get install python-gi-cairo
 # You need a composite manager
 '''
-import signal, gi, cairo, threading, time, os, argparse, fileinput 
+import signal, gi, cairo, threading, time, os, argparse, sys
 gi.require_version("Gtk", "3.0")
 
 from gi.repository import Gtk, Gdk, Pango
@@ -60,10 +60,10 @@ class SimpleOsd(Gtk.Window):
         self.add(lbl)
         
 
-        self.set_keep_above(True)
 
         self.resize(300, 250)
         self.set_position(Gtk.WindowPosition.CENTER)
+        self.set_keep_above(True)
         self.connect("delete-event", Gtk.main_quit)
         self.show_all()
                                       
@@ -76,7 +76,6 @@ class SimpleOsd(Gtk.Window):
         
     
 def countdown_thread(timeOut):
-    print "OK";
     while timeOut > 0:
         time.sleep(1)
         timeOut -= 1
@@ -93,7 +92,7 @@ if __name__ == "__main__":
     if iargs.text != "-":
         text = iargs.text
     else:
-        for line in fileinput.input():
+        for line in sys.stdin:
             text=text+line
 
     threading.Thread(target=countdown_thread, args=(int(iargs.timeout),)).start()
