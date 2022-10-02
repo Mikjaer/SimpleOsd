@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 '''
 Copyright (c) Me
-# apt-get install python-gi-cairo
+# apt-get install python3-gi-cairo
 # You need a composite manager
 '''
 import signal, gi, cairo, threading, time, os, argparse, sys
@@ -39,7 +39,7 @@ class SimpleOsd(Gtk.Window):
 
         self.connect("draw", self.on_draw)        
        
-        css = '* { text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; }'
+        css = b'* { text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; }'
         css_provider = Gtk.CssProvider()
         css_provider.load_from_data(css)
 
